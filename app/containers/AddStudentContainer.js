@@ -55,7 +55,7 @@ class AddStudentContainer extends Component {
 
   handleSubmit (evt) {
     evt.preventDefault();
-    console.log("this.state")
+    console.log(this.state)
     store.dispatch(addNewStudent(this.state));
   
   }

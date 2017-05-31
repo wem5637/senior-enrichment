@@ -44,8 +44,8 @@ api.post('/campuses', (req, res, next) => {
 })
 
 api.post('/students', (req, res, next) => {
-	console.log(req.body.name);
-	Student.create(req.body.name)
+	console.log(req.body);
+	Student.create(req.body)
 	.then(student => res.status(201).json(student))
   	.catch(next);
 	
