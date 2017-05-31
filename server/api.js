@@ -35,15 +35,19 @@ api.get('/students/:studentId', (req, res) => {
 })
 
 
-api.post('/campuses', (req, res) => {
+api.post('/campuses', (req, res, next) => {
 
-	res.send({hello: 'campus create'})
+	Campus.create(req.body)
+	.then(campus => res.status(201).json(campus))
+  	.catch(next);
 
 })
 
-api.post('/students', (req, res) => {
-
-	res.send({hello: 'student create'})
+api.post('/students', (req, res, next) => {
+	console.log(req.body.name);
+	Student.create(req.body.name)
+	.then(student => res.status(201).json(student))
+  	.catch(next);
 	
 })
 

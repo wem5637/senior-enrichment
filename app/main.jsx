@@ -11,6 +11,8 @@ import CampusesContainer from './containers/CampusesContainer'
 import CampusContainer from './containers/CampusContainer'
 import StudentsContainer from './containers/StudentsContainer'
 import StudentContainer from './containers/StudentContainer'
+import AddCampusContainer from './containers/AddCampusContainer'
+import AddStudentContainer from './containers/AddStudentContainer'
 
 
 
@@ -22,7 +24,9 @@ render (
 	    	<Route path="/campuses" component={CampusesContainer}/>
 	    	<Route path="/campuses/:campusId" component={CampusContainer}/>
 	    	<Route path="/students" component={StudentsContainer}/>
-	    	<Route path="/students/:studentId" component={StudentContainer}/>	    	
+	    	<Route path="/students/:studentId" component={StudentContainer}/>
+	    	<Route path="/addcampus" component={AddCampusContainer}/>
+	    	<Route path="/addstudent" component={AddStudentContainer}/>	
 	    	<IndexRedirect to="/root"/>
 	    </Route>
 	</Router>
