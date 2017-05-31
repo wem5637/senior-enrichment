@@ -6,12 +6,13 @@ class CampusesContainer extends Component {
 
   constructor() {
     super();
+    this.state = store.getState().campuses;
     
   }
 
   componentDidMount() {
     this.unsubscribe = store.subscribe(() => {
-      this.setState(store.getState().playlists);
+      this.setState(store.getState().campuses);
     });
   }
 
@@ -21,7 +22,7 @@ class CampusesContainer extends Component {
 
   render() {
     return (
-      <Campuses/>
+      <Campuses campuses={this.state.list}/>
     );
   }
 

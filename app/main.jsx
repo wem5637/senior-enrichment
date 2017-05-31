@@ -4,6 +4,7 @@ import {render} from 'react-dom'
 import { Provider } from 'react-redux'
 import {Router, Route, hashHistory, IndexRedirect} from 'react-router';
 
+import axios from 'axios';
 import store from './store'
 import Root from './components/Root'
 import App from './components/App'
@@ -14,12 +15,28 @@ import StudentContainer from './containers/StudentContainer'
 import AddCampusContainer from './containers/AddCampusContainer'
 import AddStudentContainer from './containers/AddStudentContainer'
 
+import {receiveStudents} from './action-creators/student';
+import {receiveCampuses} from './action-creators/campus';
 
+const onAppEnter = function () {
+
+  Promise.all([
+    axios.get('/api/students'),
+    axios.get('/api/campuses'),
+    
+  ])
+    .then(responses => responses.map(r => r.data))
+    .then(([students, campuses]) => {
+      store.dispatch(receiveStudents(students));
+      store.dispatch(receiveCampuses(campuses));
+    });
+
+};
 
 render (
 <Provider store={store}>
 	<Router history={hashHistory}>
-	    <Route path="/" component={App}>
+	    <Route path="/" component={App} onEnter={onAppEnter}>
 	    	<Route path="/root" component={Root}/>
 	    	<Route path="/campuses" component={CampusesContainer}/>
 	    	<Route path="/campuses/:campusId" component={CampusContainer}/>

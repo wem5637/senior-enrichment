@@ -11,26 +11,50 @@ const Campus = db.models.campus;
 	// Ideally you would have something to handle this, so if you have time try that out!
 api.get('/campuses', (req, res) => {
 
-	res.json({ok:"campuses"});
+	Campus.findAll({
+
+	})
+	.then(function(campuses){
+		res.json(campuses)
+	})
 
 })
 
 api.get('/campuses/:campusId', (req, res) => {
 
-	res.send({hello: 'campusid'})
+	Campus.findOne({
+		where:{
+			id: req.params.campusId
+		}
+	})
+	.then(function(campus){
+		res.json(campus)
+	})
 
 })
 
 
 api.get('/students', (req, res) => {
 
-	res.send({hello: 'all students'})
+	Student.findAll({
+
+	})
+	.then(function(students){
+		res.json(students)
+	})
 
 })
 
 api.get('/students/:studentId', (req, res) => {
 
-	res.send({hello: 'student by id'})
+	Student.findOne({
+		where:{
+			id: req.params.studentId
+		}
+	})
+	.then(function(students){
+		res.json(students)
+	})
 
 })
 
@@ -66,13 +90,13 @@ api.put('/students/:studentId', (req, res) => {
 })
 
 
-api.delete('/campuses', (req, res) => {
+api.delete('/campuses/:campusId', (req, res) => {
 
 	res.send({hello: 'campus delete'})
 	
 })
 
-api.delete('/students', (req, res) => {
+api.delete('/students/:studentId', (req, res) => {
 
 	res.send({hello: 'student delete'})
 	
