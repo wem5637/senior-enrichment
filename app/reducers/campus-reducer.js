@@ -1,7 +1,10 @@
 import {
   RECEIVE_CAMPUSES,
-  RECEIVE_CAMPUS
+  RECEIVE_CAMPUS,
+  REMOVE_CAMPUS
 } from '../constants';
+
+import store from '../store';
 
 const initialCampusesState = {
   selected: {},
@@ -22,11 +25,14 @@ export default function (state = initialCampusesState, action) {
       newState.selected = action.campus;
       break;
 
+    case REMOVE_CAMPUS:
+
+      newState.list=store.getState().campuses.list.filter(campus=>campus.id!==action.id);
+      break;
+
     default:
       return state;
-
   }
-
   return newState;
 
 }

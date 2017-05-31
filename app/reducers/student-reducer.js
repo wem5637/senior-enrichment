@@ -1,8 +1,10 @@
 import {
   RECEIVE_STUDENTS,
-  RECEIVE_STUDENT
+  RECEIVE_STUDENT,
+  REMOVE_STUDENT
 } from '../constants';
 
+import store from '../store';
 
 const initialStudentsState = {
   selected: {},
@@ -23,11 +25,14 @@ export default function (state = initialStudentsState, action) {
       newState.selected = action.student;
       break;
 
+    case REMOVE_STUDENT:
+      newState.list=store.getState().students.list.filter(student=>student.id!==action.id);
+      break;
+
     default:
       return state;
 
   }
-
   return newState;
 
 }

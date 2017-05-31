@@ -9,10 +9,10 @@ export default function AddCampus (props) {
 
   return (
   	<div>
-	  	<h3>CREATE CAMPUS</h3>
+	  	<h3 className="col-xs-12">ADD CAMPUS</h3>
 	    <form className="form-horizontal" onSubmit={handleSubmit}>
 		  <div className="form-group">
-		    <label>Name:</label>
+		    <label className="col-xs-12">Name:</label>
 		    <input 
 			    type="name" 
 			    className="form-control" 

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import store from '../store';
 import Students from '../components/Students';
+import AddStudentContainer from './AddStudentContainer'
 
 class StudentsContainer extends Component {
 
@@ -22,7 +23,10 @@ class StudentsContainer extends Component {
 
   render() {
     return (
-      <Students students={this.state.list}/>
+      <div>
+        <Students students={this.state.list}/>
+        <AddStudentContainer/>
+      </div>
     );
   }
 

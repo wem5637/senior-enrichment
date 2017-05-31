@@ -1,13 +1,16 @@
 import React, {Component} from 'react';
 import store from '../store';
 import Campuses from '../components/Campuses';
+import AddCampusContainer from './AddCampusContainer'
+
+import removeCampus from '../action-creators/campus'
 
 class CampusesContainer extends Component {
 
   constructor() {
     super();
     this.state = store.getState().campuses;
-    
+ 
   }
 
   componentDidMount() {
@@ -20,9 +23,15 @@ class CampusesContainer extends Component {
     this.unsubscribe();
   }
 
+
   render() {
     return (
-      <Campuses campuses={this.state.list}/>
+      <div>
+        <Campuses campuses={this.state.list}/>
+        <section>
+         <AddCampusContainer/>
+        </section>
+      </div>
     );
   }
 

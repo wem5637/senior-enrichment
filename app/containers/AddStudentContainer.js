@@ -11,11 +11,13 @@ class AddStudentContainer extends Component {
     this.state = {
       firstName:'',
       lastName:'',
-      email:''
+      email:'',
+      campusId: 1
     }
     this.handleFirstNameChange = this.handleFirstNameChange.bind(this);
     this.handleLastNameChange = this.handleLastNameChange.bind(this);
     this.handleEmailChange = this.handleEmailChange.bind(this);
+    this.handleCampusChange = this.handleCampusChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -53,9 +55,17 @@ class AddStudentContainer extends Component {
     });
   }
 
+  handleCampusChange (evt) {
+    const value = evt.target.value;
+    this.setState({
+      campusId: parseInt(value),
+      dirty: true
+    });
+  }
+
+
   handleSubmit (evt) {
     evt.preventDefault();
-    console.log(this.state)
     store.dispatch(addNewStudent(this.state));
   
   }
@@ -65,11 +75,13 @@ class AddStudentContainer extends Component {
       <AddStudent
         handleFirstNameChange={this.handleFirstNameChange}
         handleLastNameChange={this.handleLastNameChange}
+        handleCampusChange={this.handleCampusChange}
         handleEmailChange={this.handleEmailChange}
         handleSubmit={this.handleSubmit}
         firstName={this.state.firstName}
         lastName={this.state.lastName}
         email={this.state.email}
+        campusId={this.state.campusId}
       />
     );
   }

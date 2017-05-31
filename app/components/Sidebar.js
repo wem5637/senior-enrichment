@@ -15,16 +15,6 @@ const Sidebar = (props) => {
           <Link to="/students">STUDENTS</Link>
         </h4>
       </section>
-      <section>
-        <h4 className="menu-item">
-          <Link to="/addcampus">ADD NEW CAMPUS</Link>
-        </h4>
-      </section>
-      <section>
-        <h4 className="menu-item">
-          <Link to="/addstudent">ADD NEW STUDENT</Link>
-        </h4>
-      </section>
     </sidebar>
   );
 }

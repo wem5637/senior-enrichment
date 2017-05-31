@@ -15,8 +15,8 @@ import StudentContainer from './containers/StudentContainer'
 import AddCampusContainer from './containers/AddCampusContainer'
 import AddStudentContainer from './containers/AddStudentContainer'
 
-import {receiveStudents} from './action-creators/student';
-import {receiveCampuses} from './action-creators/campus';
+import {receiveStudents, getStudentById} from './action-creators/student';
+import {receiveCampuses, getCampusById} from './action-creators/campus';
 
 const onAppEnter = function () {
 
@@ -33,15 +33,25 @@ const onAppEnter = function () {
 
 };
 
+const onStudentEnter = function (nextRouterState){
+	const studentId = nextRouterState.params.studentId;
+	store.dispatch(getStudentById(studentId))
+}
+
+const onCampusEnter = function (nextRouterState){
+	const campusId = nextRouterState.params.campusId;
+	store.dispatch(getCampusById(campusId))
+}
+
 render (
 <Provider store={store}>
 	<Router history={hashHistory}>
 	    <Route path="/" component={App} onEnter={onAppEnter}>
 	    	<Route path="/root" component={Root}/>
 	    	<Route path="/campuses" component={CampusesContainer}/>
-	    	<Route path="/campuses/:campusId" component={CampusContainer}/>
+	    	<Route path="/campuses/:campusId" component={CampusContainer} onEnter={onCampusEnter}/>
 	    	<Route path="/students" component={StudentsContainer}/>
-	    	<Route path="/students/:studentId" component={StudentContainer}/>
+	    	<Route path="/students/:studentId" component={StudentContainer} onEnter={onStudentEnter}/>
 	    	<Route path="/addcampus" component={AddCampusContainer}/>
 	    	<Route path="/addstudent" component={AddStudentContainer}/>	
 	    	<IndexRedirect to="/root"/>
