@@ -37,7 +37,7 @@ api.get('/campuses/:campusId', (req, res) => {
 api.get('/students', (req, res) => {
 
 	Student.findAll({
-
+		include: [Campus]
 	})
 	.then(function(students){
 		res.json(students)
@@ -50,7 +50,9 @@ api.get('/students/:studentId', (req, res) => {
 	Student.findOne({
 		where:{
 			id: req.params.studentId
-		}
+
+		},
+		include: [Campus]
 	})
 	.then(function(students){
 		res.json(students)

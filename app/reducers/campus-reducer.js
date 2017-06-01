@@ -26,7 +26,6 @@ export default function (state = initialCampusesState, action) {
       break;
 
     case REMOVE_CAMPUS:
-
       newState.list=store.getState().campuses.list.filter(campus=>campus.id!==action.id);
       break;
 

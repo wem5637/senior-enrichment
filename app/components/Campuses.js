@@ -9,7 +9,7 @@ export default function Campuses (props) {
   
   return (
     <div>
-      <h3>CAMPUSES VIEW</h3>
+      <h3>ALL CAMPUSES</h3>
       {
       	campuses && campuses.map(campus =>(
             <div className="col-xs-4" key={ campus.id }>

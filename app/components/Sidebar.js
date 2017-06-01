@@ -7,7 +7,7 @@ const Sidebar = (props) => {
       <img src="favicon.ico" className="logo" />
       <section>
         <h4 className="menu-item active">
-          <Link to="/campuses">CAMPUSES</Link>
+          <Link to="/campuses">HOME</Link>
         </h4>
       </section>
       <section>

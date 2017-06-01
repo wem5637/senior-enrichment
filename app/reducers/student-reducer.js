@@ -29,6 +29,8 @@ export default function (state = initialStudentsState, action) {
       newState.list=store.getState().students.list.filter(student=>student.id!==action.id);
       break;
 
+        
+
     default:
       return state;
 

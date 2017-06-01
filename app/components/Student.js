@@ -6,6 +6,7 @@ const lastName = props.selectedStudent.lastName;
 const firstName = props.selectedStudent.firstName;
 const email = props.selectedStudent.email;
 const campusId = props.selectedStudent.campusId;
+const campusName = props.selectedStudent.campus?props.selectedStudent.campus.name:null;
 
   return (
     <div>
@@ -13,9 +14,12 @@ const campusId = props.selectedStudent.campusId;
 
       <h2>{`${lastName}, ${firstName}`}</h2>
       <h4>{email}</h4>
-      <Link className="thumbnail" to={`/campuses/${campusId}`}>
-      	<h4>Campus {campusId}</h4>
-      </Link>
+      {campusId?
+        <Link className="thumbnail" to={`/campuses/${campusId}`}>
+      	<h4>{`Campus: ${campusName}`}</h4>
+      </Link>:
+      <h4>NEEDS CAMPUS ASSIGNED</h4>
+      }
     </div>
   );
 

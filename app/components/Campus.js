@@ -11,11 +11,15 @@ export default function Campus (props) {
 	})
 
   return (
-    <div>{console.log(id, students)}
-      <h3>SINGLE CAMPUS VIEW</h3>
-      <h2>{name}</h2>
-      <h2>imageurl: {imageUrl}</h2>
-      <Students students={students}/>
+    <div>
+      <div className="col-xs-4">
+        <h3>A Look At {name} Campus</h3>
+        <img src={imageUrl} className="img-thumbnail"/>
+        <h2>Students Enrolled At {name}:</h2>
+      </div>
+      <section className="col-xs-12">
+        <Students students={students}/>
+      </section>
     </div>
   );
 

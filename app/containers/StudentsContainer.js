@@ -7,13 +7,13 @@ class StudentsContainer extends Component {
 
   constructor() {
     super();
-    this.state = store.getState().students;
+    this.state = store.getState();
     
   }
 
   componentDidMount() {
     this.unsubscribe = store.subscribe(() => {
-      this.setState(store.getState().students);
+      this.setState(store.getState());
     });
   }
 
@@ -24,7 +24,8 @@ class StudentsContainer extends Component {
   render() {
     return (
       <div>
-        <Students students={this.state.list}/>
+        <h3>ALL STUDENTS</h3>
+        <Students students={this.state.students.list} campuses={this.state.campuses.list}/>
         <AddStudentContainer/>
       </div>
     );

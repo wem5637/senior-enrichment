@@ -9,16 +9,16 @@ export default function Students (props) {
 
   return (
     <div>
-      <h3>STUDENTS VIEW</h3>
+      
       {
       	students && students.map(student =>(
-            <div id="student" className="col-xs-4" key={ student.id }>
+            <div id="student" className="col-xs-8" key={ student.id }>
               <Link className="media-body thumbnail" to={`/students/${student.id}`}>
                 <img src=''/>
                 <div className="caption">
                   <h5>
                     <span>{ `NAME: ${student.lastName}, ${student.firstName}` }</span>
-                    <div>{ `CAMPUS: ${student.campusId?student.campusId:"***NEEDS CAMPUS"}` }</div>                    
+                    <div>{ `CAMPUS: ${student.campusId?student.campus.name:"***NEEDS CAMPUS"}` }</div>                    
                   </h5>
                 </div>
               </Link>
