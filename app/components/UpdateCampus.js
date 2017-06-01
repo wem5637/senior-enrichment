@@ -9,16 +9,13 @@ export default function UpdateCampus (props) {
   const handleCampusNameChange = props.handleCampusNameChange;
   const handleCampusImageUrlChange = props.handleCampusImageUrlChange;
   const handleSubmit = props.handleSubmit;
-  const selectedCampus = store.getState().campuses.selected;
-  const id = selectedCampus.id;
 
   const updatedCampus = props.updatedCampus;
   console.log("updatedCampus", updatedCampus)
 
-
   return (
       <div className="col-xs-8">
-        <form className="form-horizontal" onSubmit={() => store.dispatch(updateCampus(id, updatedCampus))}>
+        <form className="form-horizontal" onSubmit={() => store.dispatch(updateCampus(updatedCampus.id, updatedCampus))}>
           <div className="form-group">
             <h3>Update Campus Information</h3>
             <label>Update Campus Name:</label>

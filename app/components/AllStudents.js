@@ -6,8 +6,9 @@ import {removeStudent} from '../action-creators/student'
 export default function Students (props) {
 
 	const students = props.students;
-  const campusName = props.campusName;
-  
+  const campuses = props.campuses;
+
+
   return (
     <div>
       <h3></h3>
@@ -18,8 +19,8 @@ export default function Students (props) {
                 <img src=''/>
                 <div className="caption">
                   <h5>
-                    <span>{ `NAME: ${student.lastName}, ${student.firstName}` }</span>
-                    <div>{ `CAMPUS: ${campusName}` }</div>                    
+                    <span className="col-xs-6">{ `NAME: ${student.lastName}, ${student.firstName}` }</span>
+                    <span className="col-xs-6">{ ` CAMPUS: ${student.campus?student.campus.name:student.campusId}` }</span>                    
                   </h5>
                 </div>
               </Link>

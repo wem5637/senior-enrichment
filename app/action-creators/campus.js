@@ -24,6 +24,7 @@ export const update = (id, campus) => ({
     campus
 });
 
+
 export const addNewCampus = campusName => {
 
   return (dispatch, getState) => {
@@ -31,13 +32,15 @@ export const addNewCampus = campusName => {
     return axios.post('/api/campuses', {name: campusName})
       .then(res => res.data)
       .then(campus => {
+
         const newListOfCampuses = getState().campuses.list.concat([campus]);
         dispatch(receiveCampuses(newListOfCampuses));
-      });
 
+      });
   };
 
 };
+
 
 export const getCampusById = campusId => {
   return dispatch => {
@@ -59,9 +62,9 @@ export const removeCampus = id => dispatch => {
 };
 
 export const updateCampus = (id, campus) => dispatch => {
-  dispatch(update(id, campus))
+  // dispatch(update(id, campus))
   axios.put(`/api/campuses/${id}`, campus)
-       .then(res => dispatch(update(res.data)))
+       .then(res => dispatch(update(id, campus)))
        .catch(err => console.error(`Updating campus: ${campus} unsuccessful`, err));
 };
 

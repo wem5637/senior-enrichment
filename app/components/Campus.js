@@ -1,16 +1,18 @@
 import React from 'react';
 import {Link} from 'react-router';
-import Students from './Students';
+import Campusstudents from './CampusStudents';
 
 import UpdateCampusContainer from '../containers/UpdateCampusContainer'
 
 export default function Campus (props) {
-	const name = props.selectedCampus.name;
-	const imageUrl = props.selectedCampus.imageUrl;
-	const id = props.selectedCampus.id
-	const students = props.students.filter(function(student){
-		return id===student.campusId
-	})
+  console.log("Campus.js props", props)
+  const name = props.selectedCampus.name;
+  const imageUrl = props.selectedCampus.imageUrl;
+  const id = props.selectedCampus.id
+  const students = props.students.filter(function(student){
+    return id===student.campusId
+  })
+
 
   return (
     <div>
@@ -23,7 +25,7 @@ export default function Campus (props) {
       <UpdateCampusContainer/>
 
       <section className="col-xs-12">
-        <Students students={students}/>
+        <Campusstudents students={students} campusName={name}/>
       </section>
     </div>
   );

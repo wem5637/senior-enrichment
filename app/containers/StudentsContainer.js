@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import store from '../store';
-import Students from '../components/Students';
+import AllStudents from '../components/AllStudents';
 import AddStudentContainer from './AddStudentContainer'
+import UpdateStudentContainer from './UpdateStudentContainer'
 
 class StudentsContainer extends Component {
 
@@ -25,8 +26,8 @@ class StudentsContainer extends Component {
     return (
       <div>
         <h3>ALL STUDENTS</h3>
-        <Students students={this.state.students.list} campuses={this.state.campuses.list}/>
-        <AddStudentContainer/>
+        <AllStudents students={this.state.students.list} campuses={this.state.campuses.list}/>
+        <AddStudentContainer initCampVal = {this.state}/>
       </div>
     );
   }

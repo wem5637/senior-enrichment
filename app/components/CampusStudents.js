@@ -7,7 +7,6 @@ export default function Students (props) {
 
 	const students = props.students;
   const campusName = props.campusName;
-  
   return (
     <div>
       <h3></h3>
@@ -18,8 +17,9 @@ export default function Students (props) {
                 <img src=''/>
                 <div className="caption">
                   <h5>
-                    <span>{ `NAME: ${student.lastName}, ${student.firstName}` }</span>
-                    <div>{ `CAMPUS: ${campusName}` }</div>                    
+                    <span className="col-xs-4">{ `NAME: ${student.lastName}, ${student.firstName} ` }</span>
+                    <span className="col-xs-4">{ ` EMAIL: ${student.email} ` }</span>
+                    <span className="col-xs-4">{ ` CAMPUS: ${campusName} ` }</span>                    
                   </h5>
                 </div>
               </Link>

@@ -18,10 +18,11 @@ const campuses = props.campuses;
 
         <h2>{`${lastName}, ${firstName}`}</h2>
         <h4>{email}</h4>
+        <h4>Campus ID: {campusId}</h4>
         {campusId?
           <Link className="thumbnail" to={`/campuses/${campusId}`}>
-        	<h4>{`Campus: ${campusName}`}</h4>
-        </Link>:
+        	 <h4>{`Go to campus ${campusName}`}</h4>
+          </Link>:
         <h4>NEEDS CAMPUS ASSIGNED</h4>
         }
       </div>

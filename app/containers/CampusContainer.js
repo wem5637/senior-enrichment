@@ -8,6 +8,7 @@ class CampusContainer extends Component {
     super();
     this.state = store.getState();
     
+    
   }
 
   componentDidMount() {

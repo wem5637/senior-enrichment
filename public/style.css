@@ -13,7 +13,7 @@ sidebar {
   left: 0;
   top: 0;
   padding: 0 !important;
-  background: #4ea248;
+  background: #9370DB;
   height: calc(100vh - 56px);
   width: inherit;
   overflow-y: auto;
@@ -35,10 +35,10 @@ sidebar {
   sidebar .menu-item {
     transition: border-left, 0.2s; }
     sidebar .menu-item a {
-      color: #c8c8c8; }
+      color: black; }
       sidebar .menu-item a:hover {
         color: white; }
-    sidebar .menu-item.active, sidebar .menu-item:hover {
+    sidebar sidebar .menu-item:hover {
       border-left: 3px solid #00bc8c; }
 
 footer {
@@ -70,3 +70,4 @@ footer {
 
   border-radius: 15%;
 }
+

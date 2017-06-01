@@ -32,6 +32,7 @@ export const addNewStudent = obj => {
     return axios.post('/api/students', obj)
       .then(res => res.data)
       .then(student => {
+
         const newListOfStudents = getState().students.list.concat([student]);
         dispatch(receiveStudents(newListOfStudents));
 
@@ -58,8 +59,11 @@ export const removeStudent = id => dispatch => {
 };
 
 export const updateStudent = (id, student) => dispatch => {
-  dispatch(update(id, student));
+
   axios.put(`/api/students/${id}`, student)
-       .then(res => dispatch(update(res.data)))
-       .catch(err => console.error(`Updating student: ${student} unsuccessful`, err));
+    .then(res => {
+      console.log(id)
+      dispatch(getStudentById(id))
+    })
+    .catch(err => console.error(`Updating student: ${student} unsuccessful`, err));
 };

@@ -9,18 +9,19 @@ const Campus = db.models.campus;
 // If you aren't getting to this object, but rather the index.html (something with a joke) your path is wrong.
 	// I know this because we automatically send index.html for all requests that don't make sense in our backend.
 	// Ideally you would have something to handle this, so if you have time try that out!
-api.get('/campuses', (req, res) => {
+api.get('/campuses', (req, res, next) => {
 
 	Campus.findAll({
 
 	})
 	.then(function(campuses){
-		res.json(campuses)
+		res.status(200).json(campuses)
 	})
+	.catch(next);
 
 })
 
-api.get('/campuses/:campusId', (req, res) => {
+api.get('/campuses/:campusId', (req, res, next) => {
 
 	Campus.findOne({
 		where:{
@@ -28,24 +29,25 @@ api.get('/campuses/:campusId', (req, res) => {
 		}
 	})
 	.then(function(campus){
-		res.json(campus)
+		res.status(200).json(campus)
 	})
-
+	.catch(next);
 })
 
 
-api.get('/students', (req, res) => {
+api.get('/students', (req, res, next) => {
 
 	Student.findAll({
 		include: [Campus]
 	})
 	.then(function(students){
-		res.json(students)
+		res.status(200).json(students)
 	})
+	.catch(next);
 
 })
 
-api.get('/students/:studentId', (req, res) => {
+api.get('/students/:studentId', (req, res, next) => {
 
 	Student.findOne({
 		where:{
@@ -55,16 +57,26 @@ api.get('/students/:studentId', (req, res) => {
 		include: [Campus]
 	})
 	.then(function(students){
-		res.json(students)
+		res.status(200).json(students)
 	})
-
+	.catch(next);
 })
 
 
 api.post('/campuses', (req, res, next) => {
 
 	Campus.create(req.body)
-	.then(campus => res.status(201).json(campus))
+	.then(campus => {
+		return Campus.findOne({
+			where:{
+				id: campus.id
+			}
+		})
+	})
+	.then(function(campus){
+
+		res.status(201).json(campus)
+	})
   	.catch(next);
 
 })
@@ -72,14 +84,25 @@ api.post('/campuses', (req, res, next) => {
 api.post('/students', (req, res, next) => {
 
 	Student.create(req.body)
-	.then(student => res.status(201).json(student))
+	.then(student => {
+		return Student.findOne({
+			where:{
+				id: student.id
+			},
+			include: [Campus]
+		})
+	})
+	.then(function(student){
+
+		res.status(201).json(student)
+	})
   	.catch(next);
 	
 })
 
 
 
-api.put('/campuses/:campusId', (req, res) => {
+api.put('/campuses/:campusId', (req, res, next) => {
 
 	Campus.findOne({
 		where:{
@@ -89,10 +112,15 @@ api.put('/campuses/:campusId', (req, res) => {
 	.then(function(campus){
 		campus.update(req.body);
 	})
+	.then(function(camp){
+		
+		res.sendStatus(204)
+	})
+	.catch(next);
 	
 })
 
-api.put('/students/:studentId', (req, res) => {
+api.put('/students/:studentId', (req, res, next) => {
 
 	Student.findOne({
 		where:{
@@ -100,13 +128,25 @@ api.put('/students/:studentId', (req, res) => {
 		}
 	})
 	.then(function(student){
-		student.update(req.body);
+		return student.update(req.body);
 	})
+	.then(function(){
+		return Student.findOne({
+			where:{
+				id: req.params.studentId
+			}
+		});
+	})
+	.then(function(student){
+		console.log(student)
+		res.status(204).json(student)
+	})
+	.catch(next);
 
 })
 
 
-api.delete('/campuses/:campusId', (req, res) => {
+api.delete('/campuses/:campusId', (req, res, next) => {
 
 	Campus.destroy({
 		where:{
@@ -117,12 +157,13 @@ api.delete('/campuses/:campusId', (req, res) => {
 		return Campus.findAll();
 	})
 	.then((campuses)=>{
-		res.status(201).json(campuses)
+		res.status(202).json(campuses)
 	})
+	.catch(next);
 	
 })
 
-api.delete('/students/:studentId', (req, res) => {
+api.delete('/students/:studentId', (req, res, next) => {
 
 	Student.destroy({
 		where:{
@@ -133,8 +174,9 @@ api.delete('/students/:studentId', (req, res) => {
 		return Student.findAll();
 	})
 	.then((students)=>{
-		res.status(201).json(students)
+		res.status(202).json(students)
 	})
+	.catch(next);
 	
 })
 

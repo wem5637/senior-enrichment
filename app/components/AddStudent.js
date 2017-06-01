@@ -17,8 +17,8 @@ export default function AddStudent (props) {
 
 
   return (
-    <div>
-      	<h3 className="col-xs-12">ADD STUDENT</h3>
+    <div className="col-xs-12">
+      	<h3 >ADD STUDENT</h3>
       	<form className="form-horizontal" onSubmit={handleSubmit}>
 			<div className="form-group">
 				<label className="col-xs-12">FirstName:</label>

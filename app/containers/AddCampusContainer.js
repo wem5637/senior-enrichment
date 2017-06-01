@@ -17,7 +17,7 @@ class AddCampusContainer extends Component {
 
   componentDidMount() {
     this.unsubscribe = store.subscribe(() => {
-      this.setState(store.getState().playlists);
+      this.setState(store.getState());
     });
   }
 
@@ -35,8 +35,11 @@ class AddCampusContainer extends Component {
 
   handleSubmit (evt) {
     evt.preventDefault();
+
     store.dispatch(addNewCampus(this.state.inputValue));
-  
+    this.setState({
+      inputValue: ''
+    })
   }
 
   render() {

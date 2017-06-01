@@ -14,7 +14,7 @@ export default function UpdateStudent (props) {
   const campuses = store.getState().campuses;
   
   return (
-      <div className="col-xs-8">{console.log(updatedStudent)}
+      <div className="col-xs-8">
         <form className="form-horizontal" onSubmit={() => store.dispatch(updateStudent(updatedStudent.id, updatedStudent))}>
           <div className="form-group">
             <h3>Update Student Information</h3>

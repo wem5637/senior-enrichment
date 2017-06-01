@@ -3,17 +3,19 @@ import store from '../store';
 import AddStudent from '../components/AddStudent';
 import {addNewStudent} from '../action-creators/student';
 
-
-class AddStudentContainer extends Component {
-
-  constructor() {
-    super();
-    this.state = {
+const initialState = {
       firstName:'',
       lastName:'',
       email:'',
-      campusId: 1
+      campusId: null
     }
+
+class AddStudentContainer extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = Object.assign({}, initialState, {campusId: props.initCampVal.campuses.list[0]?props.initCampVal.campuses.list[0].id:1})
+
     this.handleFirstNameChange = this.handleFirstNameChange.bind(this);
     this.handleLastNameChange = this.handleLastNameChange.bind(this);
     this.handleEmailChange = this.handleEmailChange.bind(this);
@@ -23,7 +25,7 @@ class AddStudentContainer extends Component {
 
   componentDidMount() {
     this.unsubscribe = store.subscribe(() => {
-      this.setState(store.getState().playlists);
+      this.setState(store.getState());
     });
   }
 
@@ -67,6 +69,7 @@ class AddStudentContainer extends Component {
   handleSubmit (evt) {
     evt.preventDefault();
     store.dispatch(addNewStudent(this.state));
+    this.setState(initialState);
   }
 
   render() {

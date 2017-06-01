@@ -11,7 +11,7 @@ class SidebarContainer extends Component {
 
   componentDidMount() {
     this.unsubscribe = store.subscribe(() => {
-      this.setState(store.getState().playlists);
+      this.setState(store.getState());
     });
   }
 
