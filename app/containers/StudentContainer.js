@@ -24,6 +24,7 @@ class StudentContainer extends Component {
     return (
       <Student
       selectedStudent={this.state.students.selected}
+      campuses={this.state.campuses}
       />
     );
   }

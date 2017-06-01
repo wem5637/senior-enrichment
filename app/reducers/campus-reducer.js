@@ -1,7 +1,8 @@
 import {
   RECEIVE_CAMPUSES,
   RECEIVE_CAMPUS,
-  REMOVE_CAMPUS
+  REMOVE_CAMPUS,
+  UPDATE_CAMPUS
 } from '../constants';
 
 import store from '../store';
@@ -26,7 +27,12 @@ export default function (state = initialCampusesState, action) {
       break;
 
     case REMOVE_CAMPUS:
-      newState.list=store.getState().campuses.list.filter(campus=>campus.id!==action.id);
+      newState.list = store.getState().campuses.list.filter(campus=>campus.id!==action.id);
+      break;
+
+    case UPDATE_CAMPUS:
+      newState.selected = action.campus;
+      newState.list = store.getState().campuses.list.map(campus=>campus.id===action.id?action.campus:campus)
       break;
 
     default:

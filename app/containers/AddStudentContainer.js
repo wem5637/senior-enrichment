@@ -67,7 +67,6 @@ class AddStudentContainer extends Component {
   handleSubmit (evt) {
     evt.preventDefault();
     store.dispatch(addNewStudent(this.state));
-  
   }
 
   render() {
@@ -82,6 +81,7 @@ class AddStudentContainer extends Component {
         lastName={this.state.lastName}
         email={this.state.email}
         campusId={this.state.campusId}
+        
       />
     );
   }

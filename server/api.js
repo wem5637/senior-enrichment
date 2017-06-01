@@ -81,14 +81,28 @@ api.post('/students', (req, res, next) => {
 
 api.put('/campuses/:campusId', (req, res) => {
 
-	res.send({hello: 'campus update'})
+	Campus.findOne({
+		where:{
+			id: req.params.campusId
+		}
+	})
+	.then(function(campus){
+		campus.update(req.body);
+	})
 	
 })
 
 api.put('/students/:studentId', (req, res) => {
 
-	res.send({hello: 'student update'})
-	
+	Student.findOne({
+		where:{
+			id: req.params.studentId
+		}
+	})
+	.then(function(student){
+		student.update(req.body);
+	})
+
 })
 
 

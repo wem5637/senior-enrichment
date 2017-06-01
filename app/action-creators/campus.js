@@ -18,8 +18,9 @@ export const remove = (id) => ({
     id
 });
 
-export const update = (campus) => ({
+export const update = (id, campus) => ({
     type: UPDATE_CAMPUS,
+    id,
     campus
 });
 
@@ -58,6 +59,7 @@ export const removeCampus = id => dispatch => {
 };
 
 export const updateCampus = (id, campus) => dispatch => {
+  dispatch(update(id, campus))
   axios.put(`/api/campuses/${id}`, campus)
        .then(res => dispatch(update(res.data)))
        .catch(err => console.error(`Updating campus: ${campus} unsuccessful`, err));

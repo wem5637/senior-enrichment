@@ -1,7 +1,8 @@
 import {
   RECEIVE_STUDENTS,
   RECEIVE_STUDENT,
-  REMOVE_STUDENT
+  REMOVE_STUDENT,
+  UPDATE_STUDENT
 } from '../constants';
 
 import store from '../store';
@@ -29,7 +30,10 @@ export default function (state = initialStudentsState, action) {
       newState.list=store.getState().students.list.filter(student=>student.id!==action.id);
       break;
 
-        
+    case UPDATE_STUDENT:
+      newState.selected = action.student;
+      newState.list = store.getState().students.list.map(student=>student.id===action.id?action.student:student)
+      break;      
 
     default:
       return state;

@@ -18,8 +18,9 @@ export const remove = (id) => ({
     id
 });
 
-export const update = (student) => ({
+export const update = (id, student) => ({
     type: UPDATE_STUDENT,
+    id,
     student
 });
 
@@ -51,13 +52,13 @@ export const getStudentById = studentId => {
 
 
 export const removeStudent = id => dispatch => {
-  console.log('------removeStudent')
   dispatch(remove(id));
   axios.delete(`/api/students/${id}`)
        .catch(err => console.error(`Removing student: ${id} unsuccessful`, err));
 };
 
 export const updateStudent = (id, student) => dispatch => {
+  dispatch(update(id, student));
   axios.put(`/api/students/${id}`, student)
        .then(res => dispatch(update(res.data)))
        .catch(err => console.error(`Updating student: ${student} unsuccessful`, err));
