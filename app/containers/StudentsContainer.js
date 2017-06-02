@@ -6,8 +6,9 @@ import UpdateStudentContainer from './UpdateStudentContainer'
 
 class StudentsContainer extends Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+
     this.state = store.getState();
     
   }
@@ -24,7 +25,7 @@ class StudentsContainer extends Component {
 
   render() {
     return (
-      <div>
+      <div>{console.log("state", this.state)}
         <h3>ALL STUDENTS</h3>
         <AllStudents students={this.state.students.list} campuses={this.state.campuses.list}/>
         <AddStudentContainer initCampVal = {this.state}/>

@@ -31,9 +31,10 @@ export default function (state = initialCampusesState, action) {
       break;
 
     case UPDATE_CAMPUS:
-      console.log("action.campus", action.campus)
+
       newState.selected = action.campus;
       newState.list = store.getState().campuses.list.map(campus=>campus.id===action.id?action.campus:campus)
+      
       break;
 
     default:

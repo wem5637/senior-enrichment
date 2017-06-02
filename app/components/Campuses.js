@@ -8,7 +8,7 @@ export default function Campuses (props) {
 	const campuses = props.campuses;
   
   return (
-    <div>
+    <div className="col-xs-12">
       <h3>ALL CAMPUSES</h3>
       {
       	campuses && campuses.map(campus =>(

@@ -10,13 +10,13 @@ var promises2 = [];
 
 var data = {
 
-	students: [{firstName: 'Will', lastName: 'McCracken', email:'wem5637@gmail.com', campusId: 2},
-					{firstName: 'Bob', lastName: 'Davis', email:'bdavis@gmail.com', campusId: 2},
-					{firstName: 'Angus', lastName: 'Rockett', email:'angrockett@gmail.com', campusId: 2},
-					{firstName: 'Tobias', lastName: 'Funke', email:'tfunke@gmail.com', campusId: 2},
-					{firstName: 'Gob', lastName: 'Bluthe', email:'Gob@gmail.com', campusId: 1},
-					{firstName: 'Astroman', lastName: 'Manny', email:'astroman@gmail.com', campusId: 1},
-					{firstName: 'Kevin', lastName: 'Surmin', email:'ksurm@gmail.com', campusId: 3}
+	students: [{firstName: 'Will', lastName: 'McCracken', email:'wem5637@gmail.com'},
+					{firstName: 'Bob', lastName: 'Davis', email:'bdavis@gmail.com'},
+					{firstName: 'Angus', lastName: 'Rockett', email:'angrockett@gmail.com'},
+					{firstName: 'Tobias', lastName: 'Funke', email:'tfunke@gmail.com'},
+					{firstName: 'Gob', lastName: 'Bluthe', email:'Gob@gmail.com'},
+					{firstName: 'Astroman', lastName: 'Manny', email:'astroman@gmail.com'},
+					{firstName: 'Kevin', lastName: 'Surmin', email:'ksurm@gmail.com'}
 	],
 
 	campuses: [{name: 'Terra', imageUrl:'http://s2.thingpic.com/images/K4/gbgcVmMdfcKu5KFPvF5zCjTL.jpeg'},
@@ -31,7 +31,7 @@ for (var i = 0; i < data.campuses.length; ++i) {
 }
 
 for (var i = 0; i < data.students.length; ++i) {
-    promises1.push(Student.create(data.students[i]))
+    promises2.push(Student.create(data.students[i]))
 }
 
 
@@ -44,8 +44,10 @@ db.sync()
 .then(function (campus) {
 
 	console.log("adding students");
-	return promise.all(promises2);
-  	
+	setTimeout(function(){
+		return promise.all(promises2);
+	}, 3000)
+		
 })
 .then(function(){
 	console.log("Finished inserting data (press ctrl-c to exit)");

@@ -1,4 +1,5 @@
 import { RECEIVE_CAMPUSES, RECEIVE_CAMPUS, REMOVE_CAMPUS, UPDATE_CAMPUS} from '../constants';
+import {receiveStudents} from './student'
 import axios from 'axios';
 
 import {hashHistory} from 'react-router';
@@ -65,6 +66,13 @@ export const updateCampus = (id, campus) => dispatch => {
   // dispatch(update(id, campus))
   axios.put(`/api/campuses/${id}`, campus)
        .then(res => dispatch(update(id, campus)))
+       .then(() => {
+           return axios.get(`/api/students`)
+        })
+       .then(function(students){
+          console.log("student", students.data)
+          dispatch(receiveStudents(students.data))
+       })
        .catch(err => console.error(`Updating campus: ${campus} unsuccessful`, err));
 };
 

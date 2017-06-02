@@ -11,7 +11,7 @@ export default function UpdateCampus (props) {
   const handleSubmit = props.handleSubmit;
 
   const updatedCampus = props.updatedCampus;
-  console.log("updatedCampus", updatedCampus)
+
 
   return (
       <div className="col-xs-8">

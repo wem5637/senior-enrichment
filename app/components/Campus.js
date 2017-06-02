@@ -5,7 +5,7 @@ import Campusstudents from './CampusStudents';
 import UpdateCampusContainer from '../containers/UpdateCampusContainer'
 
 export default function Campus (props) {
-  console.log("Campus.js props", props)
+
   const name = props.selectedCampus.name;
   const imageUrl = props.selectedCampus.imageUrl;
   const id = props.selectedCampus.id

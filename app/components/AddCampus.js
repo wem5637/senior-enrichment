@@ -8,7 +8,7 @@ export default function AddCampus (props) {
   const inputValue = props.inputValue;
 
   return (
-  	<div>
+  	<div className="col-xs-12">
 	  	<h3 className="col-xs-12">ADD CAMPUS</h3>
 	    <form className="form-horizontal" onSubmit={handleSubmit}>
 		  <div className="form-group">
@@ -21,7 +21,6 @@ export default function AddCampus (props) {
 	            value={inputValue}
 		    ></input>
 		  </div>
-
 		  <button type="submit" className="btn btn-default">Submit</button>
 		</form>
 	</div>
